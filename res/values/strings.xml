@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RateMyProfessor</string>
+    <string name="FirstName">FirstName : </string>
+    <string name="LastName">LastName :</string>
+    <string name="Office">Office :</string>
+    <string name="Phone">Phone :</string>
+    <string name="Email">Email :</string>
+    <string name="Rating">RATING </string>
+	<string name="Comments">Comments :</string>
+	<string name="rateButton">RATE</string>
+	<string name="average">Average</string>
+	<string name="totalRatings">TotalRatings</string>
+	<string name="submit">SUBMIT</string>
+	<string name="message">Rating and Comments submitted successfully!</string>
+	<string name="menu_comments">COMMENTS</string>
+	<string name="menu_rate">RATE</string>
+	<string name="contactDetails">CONTACT DETAILS</string>
+	<string name="viewComments">VIEW COMMENTS</string>
+</resources>

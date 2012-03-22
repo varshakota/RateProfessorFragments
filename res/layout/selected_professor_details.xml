@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:stretchColumns="1"
+     >
+	
+    <TableRow>
+        <TextView
+            android:padding="5dip"
+            android:text="@string/FirstName"
+            android:textSize="20dp" />
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/firstName"
+            android:padding="5dip" 
+            android:paddingLeft="15dp"
+            android:layout_span="3"
+            android:textSize="25dp" 
+            android:layout_column="1"
+             />
+        
+        
+    </TableRow>
+    
+    <TableRow>
+        <TextView
+            android:padding="5dip"
+            android:text="@string/LastName" 
+            android:textSize="20dp" />
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/lastName"
+            android:padding="5dip"
+            android:paddingLeft="15dp"
+             android:layout_span="3" 
+             android:textSize="25dp" />
+    </TableRow>
+   
+     <View 
+        android:background="#00bfff" 
+        android:layout_height="2dip"/>
+    
+    <TableRow >
+	    <TextView
+	    android:text="@string/contactDetails" 
+	    android:textSize="30dp" 
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" 
+            android:layout_width="250dp"
+            android:layout_span="3"
+            android:padding="8dp"/>
+	</TableRow>
+	
+    <View 
+        android:background="#00bfff" 
+        android:layout_height="2dip"/>
+    <TableRow>
+        <TextView
+            android:padding="5dip"
+            android:text="@string/Office" 
+            android:textSize="20dp" />
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/office"
+            android:padding="5dip" 
+            android:paddingLeft="15dp"
+            android:layout_span="3"
+            android:textSize="25dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:padding="5dip"
+            android:text="@string/Phone" 
+            android:textSize="20dp" />
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/phone"
+            android:padding="5dip" 
+            android:paddingLeft="15dp"
+             android:layout_span="3"
+             android:textSize="25dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:padding="5dip"
+            android:text="@string/Email" 
+            android:textSize="20dp" />
+
+        <TextView
+            android:gravity="left"
+            android:id="@+id/email"
+            android:padding="5dip"  
+            android:paddingLeft="15dp"
+            android:layout_span="3"
+            android:textSize="25dp" />
+    </TableRow>
+	<View 
+        android:background="#00bfff" 
+        android:layout_height="2dip"/>
+    
+        
+    <TableRow >
+	    <TextView
+	    android:text="@string/Rating" 
+	    android:textSize="30dp" 
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" 
+            android:layout_width="250dp"
+            android:layout_span="3"
+            android:padding="4dp"/>
+	</TableRow>
+	
+    <View 
+        android:background="#00bfff" 
+        android:layout_height="2dip"/>
+       
+          
+    <TableRow>
+       <TextView 
+           android:padding="5dip"
+           android:text="@string/average"
+           android:textSize="20dp" />
+     <LinearLayout android:layout_width="wrap_content" >  
+        <RatingBar
+        android:id="@+id/average"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:isIndicator="true"
+       android:numStars="5"
+       android:stepSize="1"/>
+        </LinearLayout>
+   </TableRow>
+   <TableRow >
+       <TextView 
+           android:padding="5dip"
+           android:text="@string/totalRatings" 
+           
+           android:textSize="20dp" />
+       <TextView 
+           android:layout_gravity="left"
+           android:id="@+id/totalRating"
+           android:padding="5dip"  
+            android:paddingLeft="15dp"
+            android:layout_span="3"
+            android:textSize="25dp" />
+    </TableRow>
+    <View 
+        android:background="#000000" 
+        android:layout_height="25dip"/>
+	
+    <TableRow >
+     <Button 
+            android:id="@+id/comment"
+            android:onClick="viewComments"
+          	 android:layout_span="2"
+            android:text="@string/viewComments"
+            android:textSize="25dp" 
+            android:layout_height="50dip"
+            android:layout_gravity="center" 
+            android:layout_width="250dp"
+            />
+	 
+	</TableRow>
+	
+    <View 
+        android:background="#000000" 
+        android:layout_height="25dip"/>
+	
+    <TableRow >
+     <Button 
+            android:id="@+id/rate"
+          	 android:layout_span="3"
+            android:text="@string/rateButton"
+            android:textSize="25dp" 
+            android:layout_height="50dip"
+            android:layout_gravity="center" 
+            android:layout_width="350dp"/>
+	 
+	</TableRow>
+    
+	
+</TableLayout>

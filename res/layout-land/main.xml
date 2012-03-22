@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <fragment
+        android:id="@+id/professorListFragment"
+        android:layout_width="400dip"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        class="extended.cs.sdsu.edu.ProfessorListFragment" >
+    </fragment>
+
+    <FrameLayout
+        android:id="@+id/detailFrameLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</LinearLayout>
