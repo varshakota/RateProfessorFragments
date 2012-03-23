@@ -1,5 +1,7 @@
 package extended.cs.sdsu.edu;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -12,9 +14,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import extended.cs.sdsu.edu.domain.Professor;
 import extended.cs.sdsu.edu.service.ApplicationFactory;
+import extended.cs.sdsu.edu.service.ProfessorChangedListener;
 import extended.cs.sdsu.edu.service.ProfessorService;
 
-public class ProfessorDetailsFragment extends Fragment {
+public class ProfessorDetailsFragment extends Fragment implements
+		ProfessorChangedListener {
 
 	private TextView firstNameTextView;
 	private TextView lastNameTextView;
@@ -53,7 +57,6 @@ public class ProfessorDetailsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = initializeView(inflater, container);
-
 		return view;
 	}
 
@@ -127,8 +130,17 @@ public class ProfessorDetailsFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		ApplicationFactory.getProfessorService(getActivity())
+				.addProfessorChangedListener(this);
 
 		displayProfessorDetails(professorId);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		ApplicationFactory.getProfessorService(getActivity())
+				.removeProfessorChangedListener(this);
 	}
 
 	private void displayProfessorDetails(int professorId) {
@@ -165,5 +177,10 @@ public class ProfessorDetailsFragment extends Fragment {
 		super.onAttach(activity);
 		rateButtonListener = (RateListener) activity;
 		commentButtonListener = (CommentListListener) activity;
+	}
+
+	@Override
+	public void professorListUpdated(List<Professor> newProfessorList) {
+		displayProfessorDetails(professorId);
 	}
 }

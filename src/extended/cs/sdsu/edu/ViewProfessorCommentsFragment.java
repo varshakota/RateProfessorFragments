@@ -64,8 +64,8 @@ public class ViewProfessorCommentsFragment extends ListFragment implements
 	}
 
 	@Override
-	public void onStop() {
-		super.onStop();
+	public void onPause() {
+		super.onPause();
 		professorCommentsService.removeProfessorCommentsChangedListener(this);
 	}
 
@@ -83,7 +83,7 @@ public class ViewProfessorCommentsFragment extends ListFragment implements
 
 	@Override
 	public void professorCommentsUpdated(List<Comment> newProfessorComments) {
-		commentsListAdapter.refreshList(professorCommentsList);
+		commentsListAdapter.refreshList(newProfessorComments);
 		commentsListAdapter.notifyDataSetChanged();
 	}
 

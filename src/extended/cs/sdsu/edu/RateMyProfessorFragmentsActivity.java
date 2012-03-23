@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import extended.cs.sdsu.edu.ProfessorDetailsFragment.CommentListListener;
 import extended.cs.sdsu.edu.ProfessorDetailsFragment.RateListener;
@@ -58,24 +57,22 @@ public class RateMyProfessorFragmentsActivity extends Activity implements
 	public void onRateButtonClick(int id) {
 		FragmentManager fm = getFragmentManager();
 		Fragment rateProfessorFragment = new RateProfessorFragment(id);
-		if (fm.findFragmentByTag("RPF") == null) {
-			FragmentTransaction transaction = getFragmentManager()
-					.beginTransaction();
-			transaction.replace(R.id.detailFrameLayout, rateProfessorFragment,
-					"RPF");
-			transaction.addToBackStack("rate");
-			transaction
-					.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-			transaction.commit();
-		} else {
-			Intent rateProfessorIntent = new Intent();
-			rateProfessorIntent.setClassName("extended.cs.sdsu.edu.activity",
-					"extended.cs.sdsu.edu.activity.RateProfessorActivity");
-			rateProfessorIntent
-					.setAction("cs.assignment.intent.action.RATE_PROFESSOR");
-			rateProfessorIntent.putExtra("selectedProfessorID", id);
-			startActivity(rateProfessorIntent);
-		}
+		// if (fm.findFragmentByTag("RPF") == null) {
+		FragmentTransaction transaction = getFragmentManager()
+				.beginTransaction();
+		transaction.replace(R.id.detailFrameLayout, rateProfessorFragment,
+				"RPF");
+		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		transaction.commit();
+		// } else {
+		// Intent rateProfessorIntent = new Intent();
+		// rateProfessorIntent.setClassName("extended.cs.sdsu.edu.activity",
+		// "extended.cs.sdsu.edu.activity.RateProfessorActivity");
+		// rateProfessorIntent
+		// .setAction("cs.assignment.intent.action.RATE_PROFESSOR");
+		// rateProfessorIntent.putExtra("selectedProfessorID", id);
+		// startActivity(rateProfessorIntent);
+		// }
 	}
 
 	@Override

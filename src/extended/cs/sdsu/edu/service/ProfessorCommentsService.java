@@ -62,11 +62,10 @@ public class ProfessorCommentsService {
 
 		if (db.isProfessorCommentsEmpty(selectedProfessorId)) {
 			getCommentsFromServerAndSaveToDB(selectedProfessorId, comments);
+		} else {
+			comments = db.retrieveComments(selectedProfessorId);
+			getUpdatedProfessorCommentsFromServer(selectedProfessorId);
 		}
-		// else {
-		comments = db.retrieveComments(selectedProfessorId);
-		getUpdatedProfessorCommentsFromServer(selectedProfessorId);
-		// }
 		return comments;
 	}
 
@@ -98,16 +97,12 @@ public class ProfessorCommentsService {
 			protected List<Comment> doInBackground(
 					Integer... selectedProfessorId) {
 				professorId = selectedProfessorId[0];
-				// String lastAccessDate = sharedPreferenceWrapper
-				// .getString("dateAccessed");
-				// String currentDate = ApplicationUtils.getCurrentDateString();
 
 				List<Comment> newComments = new ArrayList<Comment>();
 				HttpClient httpClient = new DefaultHttpClient();
 				String responseBody = null;
 
 				try {
-					// if (lastAccessDate.equals(currentDate)) {
 					String sinceCommentsIdUrl = PROFESSOR_COMMENTS_BASE_URL
 							+ professorId + "/since/"
 							+ db.getLatestCommentsId(professorId);
@@ -116,18 +111,6 @@ public class ProfessorCommentsService {
 							sinceCommentsIdUrl);
 
 					handleGetCommentsResponse(newComments, responseBody);
-					// } else {
-					// String commentsSinceDate = PROFESSOR_COMMENTS_BASE_URL
-					// + professorId + "/since/" + lastAccessDate;
-					//
-					// responseBody = executeRequest(httpClient,
-					// commentsSinceDate);
-					//
-					// sharedPreferenceWrapper.putString("dateAccessed",
-					// currentDate);
-					//
-					// handleGetCommentsResponse(newComments, responseBody);
-					// }
 				} catch (Exception e) {
 					Log.e("RateMyProfessorTablet", e.getMessage(), e);
 				} finally {
@@ -166,8 +149,8 @@ public class ProfessorCommentsService {
 			String professorComments) throws InterruptedException,
 			ExecutionException {
 		String url = SUBMIT_COMMENT_URL + selectedProfessorId;
-		POSTNetworkConnection netowrkConnection = new POSTNetworkConnection();
-		HttpResponse httpResponse = netowrkConnection.execute(url,
+		POSTNetworkConnection networkConnection = new POSTNetworkConnection();
+		HttpResponse httpResponse = networkConnection.execute(url,
 				professorComments).get();
 		int statusCode = httpResponse.getStatusLine().getStatusCode();
 		return statusCode;

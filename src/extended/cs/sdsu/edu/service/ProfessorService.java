@@ -2,7 +2,6 @@ package extended.cs.sdsu.edu.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -10,7 +9,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -67,11 +65,10 @@ public class ProfessorService {
 						.convertJsonProfessorArrayToList(jsonProfessorArray);
 				db.createProfessors(professorListData);
 			}
+		} else {
+			professorListData = db.retrieveProfessors();
+			getUpdatedProfessorListFromServer();
 		}
-		// else {
-		// professorListData = db.retrieveProfessors();
-		getUpdatedProfessorListFromServer();
-		// }
 		return professorListData;
 	}
 
@@ -118,7 +115,7 @@ public class ProfessorService {
 	}
 
 	public Professor getProfessorDetails(int selectedProfessorId)
-			throws InterruptedException, ExecutionException, JSONException {
+			throws Exception {
 		Professor professorDetails = new Professor();
 		if (db.isProfessorDetailsEmpty(selectedProfessorId)) {
 			String url = "http://bismarck.sdsu.edu/rateme/instructor/"
@@ -132,6 +129,7 @@ public class ProfessorService {
 			db.addProfessorDetails(professorDetails);
 		} else {
 			professorDetails = db.retrieveProfessorDetails(selectedProfessorId);
+			getUpdatedProfessorListFromServer();
 		}
 		return professorDetails;
 	}

@@ -2,6 +2,8 @@ package extended.cs.sdsu.edu;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -14,7 +16,6 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import extended.cs.sdsu.edu.domain.Professor;
 import extended.cs.sdsu.edu.service.ApplicationFactory;
 import extended.cs.sdsu.edu.service.ProfessorCommentsService;
 import extended.cs.sdsu.edu.service.ProfessorRatingService;
@@ -25,28 +26,17 @@ public class RateProfessorFragment extends Fragment {
 	private TextView commentsText;
 	private ProfessorRatingService ratingService;
 	private ProfessorCommentsService commentsService;
-	private TextView averageTextView;
-	private TextView totalRatingTextView;
 	private AlertDialog.Builder builder;
 	private View layout;
 	private AlertDialog alertDialog;
 	private int selectedProfessorId;
 	private Button submitRating;
-	private int id;
-
-	public RateProfessorFragment() {
-
-	}
 
 	public RateProfessorFragment(int professorId) {
 		super();
 		Bundle bundle = new Bundle();
 		bundle.putInt("professorId", professorId);
 		this.setArguments(bundle);
-	}
-
-	public void setInt(int id) {
-		this.id = id;
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,9 +60,6 @@ public class RateProfessorFragment extends Fragment {
 		inflater = (LayoutInflater) getActivity().getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE);
 		layout = inflater.inflate(R.layout.success_page, null);
-		averageTextView = (TextView) layout.findViewById(R.id.averageSuccess);
-		totalRatingTextView = (TextView) layout
-				.findViewById(R.id.totalRatingsSuccess);
 		submitRating = (Button) rateView.findViewById(R.id.submit);
 		submitRating.setOnClickListener(new View.OnClickListener() {
 
@@ -102,7 +89,7 @@ public class RateProfessorFragment extends Fragment {
 				int professorRatingStatusCode = ratingService
 						.submitProfessorRating(selectedProfessorId, rating);
 
-				onSuccessDisplayDialog(professorCommentsStatusCode,
+				handleRatingCommentsResponse(professorCommentsStatusCode,
 						professorRatingStatusCode, selectedProfessorId, rating);
 			}
 		} catch (Exception e) {
@@ -113,21 +100,13 @@ public class RateProfessorFragment extends Fragment {
 		}
 	}
 
-	private void onSuccessDisplayDialog(int professorCommentsStatusCode,
+	private void handleRatingCommentsResponse(int professorCommentsStatusCode,
 			int professorRatingStatusCode, int selectedProfessorId,
 			String rating) throws Exception {
 		if (professorCommentsStatusCode == 200
 				&& professorRatingStatusCode == 200) {
-			Professor professorWithNewRatings;
-			professorWithNewRatings = ratingService.getProfessorRating(
-					selectedProfessorId, rating);
-			Float average = professorWithNewRatings.getAverage();
-			Integer totalrating = new Integer(
-					professorWithNewRatings.getTotalRatings());
-			averageTextView.setText(average.toString());
-			totalRatingTextView.setText(totalrating.toString());
-			builder.setView(layout);
-			builder.setTitle("Comments and Rating submitted successfully!!");
+			builder.setTitle("Thank you");
+			builder.setMessage("Comments and Rating submitted successfully!!");
 			builder.setCancelable(false);
 			builder.setPositiveButton("OK",
 					new DialogInterface.OnClickListener() {
@@ -138,6 +117,7 @@ public class RateProfessorFragment extends Fragment {
 										.getUpdatedProfessorListFromServer();
 								ratingBar.setRating(0);
 								commentsText.setText("");
+								backToProfessorDetailsFragment();
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -151,5 +131,15 @@ public class RateProfessorFragment extends Fragment {
 					Toast.LENGTH_SHORT).show();
 		}
 
+	}
+
+	protected void backToProfessorDetailsFragment() {
+		FragmentManager fm = getFragmentManager();
+		FragmentTransaction transaction = getFragmentManager()
+				.beginTransaction();
+		transaction
+				.replace(R.id.detailFrameLayout, fm.findFragmentByTag("PDF"));
+		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		transaction.commit();
 	}
 }

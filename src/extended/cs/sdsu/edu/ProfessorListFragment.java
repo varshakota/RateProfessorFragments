@@ -72,7 +72,6 @@ public class ProfessorListFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
-
 		Professor professor = (Professor) listView.getItemAtPosition(position);
 		int selectedProfessorId = professor.getId();
 
@@ -81,7 +80,6 @@ public class ProfessorListFragment extends ListFragment {
 			onProfessorSelectedListener
 					.selectedProfessorId(selectedProfessorId);
 		}
-
 	}
 
 	private void refreshProfessorList() {
