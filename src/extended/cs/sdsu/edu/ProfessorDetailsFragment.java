@@ -20,8 +20,7 @@ import extended.cs.sdsu.edu.service.ProfessorService;
 public class ProfessorDetailsFragment extends Fragment implements
 		ProfessorChangedListener {
 
-	private TextView firstNameTextView;
-	private TextView lastNameTextView;
+	private TextView professorName;
 	private TextView officeTextView;
 	private TextView phoneTextView;
 	private TextView emailTextView;
@@ -63,8 +62,7 @@ public class ProfessorDetailsFragment extends Fragment implements
 	private View initializeView(LayoutInflater inflater, ViewGroup container) {
 		View view = inflater.inflate(R.layout.selected_professor_details,
 				container, false);
-		firstNameTextView = (TextView) view.findViewById(R.id.firstName);
-		lastNameTextView = (TextView) view.findViewById(R.id.lastName);
+		professorName = (TextView) view.findViewById(R.id.name);
 		officeTextView = (TextView) view.findViewById(R.id.office);
 		phoneTextView = (TextView) view.findViewById(R.id.phone);
 		emailTextView = (TextView) view.findViewById(R.id.email);
@@ -150,9 +148,9 @@ public class ProfessorDetailsFragment extends Fragment implements
 		try {
 			professorDetails = professorDetailsService
 					.getProfessorDetails(professorId);
-			if (firstNameTextView != null) {
-				firstNameTextView.setText(professorDetails.getFirstName());
-				lastNameTextView.setText(professorDetails.getLastName());
+			if (professorName != null) {
+				professorName.setText(professorDetails.getFirstName() + " "
+						+ professorDetails.getLastName());
 				officeTextView.setText(professorDetails.getOffice());
 				phoneTextView.setText(professorDetails.getPhone());
 				emailTextView.setText(professorDetails.getEmail());

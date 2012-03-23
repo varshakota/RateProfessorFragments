@@ -168,4 +168,9 @@ public class ProfessorService {
 		}
 	}
 
+	public String getProfessorName(int id) {
+		Professor retrieveProfessorDetails = db.retrieveProfessorDetails(id);
+		return retrieveProfessorDetails.getFirstName() + " "
+				+ retrieveProfessorDetails.getLastName();
+	}
 }

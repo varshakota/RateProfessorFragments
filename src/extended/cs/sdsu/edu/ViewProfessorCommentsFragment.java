@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import extended.cs.sdsu.edu.domain.Comment;
 import extended.cs.sdsu.edu.service.ApplicationFactory;
 import extended.cs.sdsu.edu.service.ProfessorCommentsChangedListener;
@@ -21,6 +22,7 @@ public class ViewProfessorCommentsFragment extends ListFragment implements
 	private ProfessorCommentsService professorCommentsService;
 	private List<Comment> professorCommentsList = new ArrayList<Comment>();
 	private CommentsListAdapter commentsListAdapter;
+	private TextView professorNameTextView;
 
 	public ViewProfessorCommentsFragment() {
 
@@ -42,12 +44,6 @@ public class ViewProfessorCommentsFragment extends ListFragment implements
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		// setContentView(R.layout.professor_comments_list);
-		// Bundle bundleProfessorId = getIntent().getExtras();
-		//
-		// selectedProfessorId =
-		// bundleProfessorId.getInt("selectedProfessorID");
-
 		professorCommentsService = ApplicationFactory
 				.getProfessorCommentsService(getActivity());
 		commentsListAdapter = new CommentsListAdapter(professorCommentsList,
@@ -92,6 +88,11 @@ public class ViewProfessorCommentsFragment extends ListFragment implements
 			Bundle savedInstanceState) {
 		View commentsView = inflater.inflate(R.layout.comments_list, container,
 				false);
+		professorNameTextView = (TextView) commentsView
+				.findViewById(R.id.professorname);
+		professorNameTextView.setText(ApplicationFactory.getProfessorService(
+				getActivity()).getProfessorName(selectedProfessorId));
+
 		return commentsView;
 	}
 

@@ -62,6 +62,7 @@ public class RateMyProfessorFragmentsActivity extends Activity implements
 				.beginTransaction();
 		transaction.replace(R.id.detailFrameLayout, rateProfessorFragment,
 				"RPF");
+		transaction.addToBackStack("RPF");
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		transaction.commit();
 		// } else {

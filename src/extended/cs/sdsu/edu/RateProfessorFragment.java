@@ -27,10 +27,10 @@ public class RateProfessorFragment extends Fragment {
 	private ProfessorRatingService ratingService;
 	private ProfessorCommentsService commentsService;
 	private AlertDialog.Builder builder;
-	private View layout;
 	private AlertDialog alertDialog;
 	private int selectedProfessorId;
 	private Button submitRating;
+	private TextView professorName;
 
 	public RateProfessorFragment(int professorId) {
 		super();
@@ -52,6 +52,9 @@ public class RateProfessorFragment extends Fragment {
 				false);
 		ratingBar = (RatingBar) rateView.findViewById(R.id.ratingBar);
 		commentsText = (EditText) rateView.findViewById(R.id.commentsText);
+		professorName = (TextView) rateView.findViewById(R.id.professorname);
+		professorName.setText(ApplicationFactory.getProfessorService(
+				getActivity()).getProfessorName(selectedProfessorId));
 		ratingService = ApplicationFactory
 				.getProfessorRatingService(getActivity());
 		commentsService = ApplicationFactory
@@ -59,7 +62,6 @@ public class RateProfessorFragment extends Fragment {
 		builder = new AlertDialog.Builder(getActivity());
 		inflater = (LayoutInflater) getActivity().getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE);
-		layout = inflater.inflate(R.layout.success_page, null);
 		submitRating = (Button) rateView.findViewById(R.id.submit);
 		submitRating.setOnClickListener(new View.OnClickListener() {
 

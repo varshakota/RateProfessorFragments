@@ -7,7 +7,7 @@
     <string name="Phone">Phone :</string>
     <string name="Email">Email :</string>
     <string name="Rating">RATING </string>
-	<string name="Comments">Comments :</string>
+	<string name="Comments">COMMENTS :</string>
 	<string name="rateButton">RATE</string>
 	<string name="average">Average</string>
 	<string name="totalRatings">TotalRatings</string>
