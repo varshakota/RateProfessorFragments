@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import extended.cs.sdsu.edu.R;
+import extended.cs.sdsu.edu.R.id;
+import extended.cs.sdsu.edu.R.layout;
 import extended.cs.sdsu.edu.domain.Professor;
 import extended.cs.sdsu.edu.service.ApplicationFactory;
 import extended.cs.sdsu.edu.service.ProfessorService;

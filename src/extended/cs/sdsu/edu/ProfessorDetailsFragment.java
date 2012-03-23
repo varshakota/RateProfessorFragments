@@ -1,7 +1,7 @@
 package extended.cs.sdsu.edu;
 
+import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +26,16 @@ public class ProfessorDetailsFragment extends Fragment {
 	private Button viewCommentsButton;
 	private Button rateprofessorButton;
 	private int professorId;
+	private RateListener rateButtonListener;
+	private CommentListListener commentButtonListener;
+
+	public interface RateListener {
+		public void onRateButtonClick(int professorId);
+	}
+
+	public interface CommentListListener {
+		public void onCommentButtonClick(int professorId);
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -79,52 +89,40 @@ public class ProfessorDetailsFragment extends Fragment {
 	}
 
 	public void rateProfessor(View view) {
-		Fragment rpf = new RateProfessorFragment(professorId);
-		// if (rpf != null & rpf.isInLayout()) {
-		FragmentTransaction transaction = getFragmentManager()
-				.beginTransaction();
-		transaction.replace(R.id.detailFrameLayout, rpf, "RPF");
-		transaction.addToBackStack("details");
-		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		transaction.commit();
+		rateButtonListener.onRateButtonClick(professorId);
+		// Fragment rpf = new RateProfessorFragment(professorId);
+		// // if (rpf != null & rpf.isInLayout()) {
+		// FragmentTransaction transaction = getFragmentManager()
+		// .beginTransaction();
+		// transaction.replace(R.id.detailFrameLayout, rpf, "RPF");
+		// transaction.addToBackStack("details");
+		// transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		// transaction.commit();
 		// }
-		// else {
-		// Intent rateProfessorIntent = new Intent();
-		// rateProfessorIntent.setClassName("extended.cs.sdsu.edu.activity",
-		// "extended.cs.sdsu.edu.activity.RateProfessorActivity");
-		// rateProfessorIntent
-		// .setAction("cs.assignment.intent.action.RATE_PROFESSOR");
-		// rateProfessorIntent.putExtra("selectedProfessorID", professorId);
-		// startActivity(rateProfessorIntent);
+
 		// }
 
 	}
 
 	public void viewProfessorComments(View view) {
-		Fragment viewProfessorCommentsFragment = new ViewProfessorCommentsFragment(
-				professorId);
-		// if (viewProfessorCommentsFragment != null
-		// && viewProfessorCommentsFragment.isInLayout()) {
-		FragmentTransaction transaction = getFragmentManager()
-				.beginTransaction();
-		transaction.replace(R.id.detailFrameLayout,
-				viewProfessorCommentsFragment, "ViewProfessorComments");
-		transaction.addToBackStack("comments");
-		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		transaction.commit();
-		// }
-		// else {
-		// Intent professorCommentsIntent = new Intent();
-		// professorCommentsIntent
-		// .setClassName("extended.cs.sdsu.edu.activity",
-		// "extended.cs.sdsu.edu.activity.ViewProfessorCommentsActivity");
-		// professorCommentsIntent
-		// .setAction("cs.assignment.intent.action.PROFESSOR_COMMENTS");
-		// professorCommentsIntent
-		// .putExtra("selectedProfessorID", professorId);
-		// startActivity(professorCommentsIntent);
-		// }
+		commentButtonListener.onCommentButtonClick(professorId);
 	}
+
+	// Fragment viewProfessorCommentsFragment = new
+	// ViewProfessorCommentsFragment(
+	// professorId);
+	// // if (viewProfessorCommentsFragment != null
+	// // && viewProfessorCommentsFragment.isInLayout()) {
+	// FragmentTransaction transaction = getFragmentManager()
+	// .beginTransaction();
+	// transaction.replace(R.id.detailFrameLayout,
+	// viewProfessorCommentsFragment, "ViewProfessorComments");
+	// transaction.addToBackStack("comments");
+	// transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+	// transaction.commit();
+	// // }
+
+	// }
 
 	@Override
 	public void onResume() {
@@ -163,4 +161,9 @@ public class ProfessorDetailsFragment extends Fragment {
 		this.professorId = professorId;
 	}
 
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		rateButtonListener = (RateListener) activity;
+		commentButtonListener = (CommentListListener) activity;
+	}
 }

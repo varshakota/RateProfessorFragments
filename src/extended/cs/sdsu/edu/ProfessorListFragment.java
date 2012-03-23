@@ -81,17 +81,7 @@ public class ProfessorListFragment extends ListFragment {
 			onProfessorSelectedListener
 					.selectedProfessorId(selectedProfessorId);
 		}
-		// else {
-		// Intent professorDetails = new Intent();
-		// professorDetails
-		// .setClassName("extended.cs.sdsu.edu.activity",
-		// "extended.cs.sdsu.edu.activity.SelectedProfessorDetailsActivity");
-		// professorDetails
-		// .setAction("cs.assignment.intent.action.PROFESSOR_DETAILS");
-		// professorDetails.putExtra("selectedProfessorID",
-		// selectedProfessorId);
-		// startActivity(professorDetails);
-		// }
+
 	}
 
 	private void refreshProfessorList() {

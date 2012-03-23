@@ -20,7 +20,7 @@
         </activity>
         
         <activity
-            android:name=".SelectedProfessorDetailsActivity"
+            android:name=".activity.SelectedProfessorDetailsActivity"
             android:label="SelectedProfessorDetailsActivity">
             <intent-filter >
                 <action  android:name="cs.assignment.intent.action.PROFESSOR_DETAILS"/>

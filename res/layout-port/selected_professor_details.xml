@@ -9,7 +9,7 @@
         <TextView
             android:padding="5dip"
             android:text="@string/FirstName"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:gravity="left"
@@ -17,7 +17,7 @@
             android:padding="5dip" 
             android:paddingLeft="15dp"
             android:layout_span="3"
-            android:textSize="25dp" 
+            android:textSize="15dp"
             android:layout_column="1"
              />
         
@@ -28,7 +28,7 @@
         <TextView
             android:padding="5dip"
             android:text="@string/LastName" 
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:gravity="left"
@@ -36,7 +36,7 @@
             android:padding="5dip"
             android:paddingLeft="15dp"
              android:layout_span="3" 
-             android:textSize="25dp" />
+             android:textSize="15dp" />
     </TableRow>
    
      <View 
@@ -46,10 +46,10 @@
     <TableRow >
 	    <TextView
 	    android:text="@string/contactDetails" 
-	    android:textSize="30dp" 
+	    android:textSize="20dp" 
             android:layout_height="wrap_content"
             android:layout_gravity="center" 
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_span="3"
             android:padding="8dp"/>
 	</TableRow>
@@ -61,7 +61,7 @@
         <TextView
             android:padding="5dip"
             android:text="@string/Office" 
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:gravity="left"
@@ -69,14 +69,14 @@
             android:padding="5dip" 
             android:paddingLeft="15dp"
             android:layout_span="3"
-            android:textSize="25dp" />
+            android:textSize="15dp"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:padding="5dip"
             android:text="@string/Phone" 
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:gravity="left"
@@ -84,14 +84,14 @@
             android:padding="5dip" 
             android:paddingLeft="15dp"
              android:layout_span="3"
-             android:textSize="25dp" />
+            android:textSize="15dp"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:padding="5dip"
             android:text="@string/Email" 
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:gravity="left"
@@ -99,7 +99,7 @@
             android:padding="5dip"  
             android:paddingLeft="15dp"
             android:layout_span="3"
-            android:textSize="25dp" />
+            android:textSize="15dp" />
     </TableRow>
 	<View 
         android:background="#00bfff" 
@@ -109,10 +109,10 @@
     <TableRow >
 	    <TextView
 	    android:text="@string/Rating" 
-	    android:textSize="30dp" 
+	    android:textSize="20dp" 
             android:layout_height="wrap_content"
             android:layout_gravity="center" 
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_span="3"
             android:padding="4dp"/>
 	</TableRow>
@@ -126,30 +126,32 @@
        <TextView 
            android:padding="5dip"
            android:text="@string/average"
-           android:textSize="20dp" />
+          android:textSize="15dp"/>
      <LinearLayout android:layout_width="wrap_content" >  
+
         <RatingBar
-        android:id="@+id/average"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-        android:isIndicator="true"
-       android:numStars="5"
-       android:stepSize="1"/>
+            android:id="@+id/average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="1" />
+
         </LinearLayout>
    </TableRow>
    <TableRow >
        <TextView 
            android:padding="5dip"
            android:text="@string/totalRatings" 
-           
-           android:textSize="20dp" />
+           android:textSize="15dp" />
+       
        <TextView 
            android:layout_gravity="left"
            android:id="@+id/totalRating"
            android:padding="5dip"  
             android:paddingLeft="15dp"
             android:layout_span="3"
-            android:textSize="25dp" />
+            android:textSize="15dp" />
     </TableRow>
     <View 
         android:background="#000000" 
@@ -161,7 +163,7 @@
             android:onClick="viewComments"
           	 android:layout_span="2"
             android:text="@string/viewComments"
-            android:textSize="25dp" 
+            android:textSize="15dp"
             android:layout_height="50dip"
             android:layout_gravity="center" 
             android:layout_width="250dp"
@@ -178,7 +180,7 @@
             android:id="@+id/rate"
           	 android:layout_span="3"
             android:text="@string/rateButton"
-            android:textSize="25dp" 
+            android:textSize="15dp"
             android:layout_height="50dip"
             android:layout_gravity="center" 
             android:layout_width="350dp"

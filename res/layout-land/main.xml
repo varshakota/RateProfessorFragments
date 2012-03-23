@@ -13,9 +13,10 @@
     </fragment>
 
     <FrameLayout
+       
         android:id="@+id/detailFrameLayout"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
     </FrameLayout>
 
 </LinearLayout>

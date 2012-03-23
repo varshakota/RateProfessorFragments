@@ -32,6 +32,7 @@ public class RateProfessorFragment extends Fragment {
 	private AlertDialog alertDialog;
 	private int selectedProfessorId;
 	private Button submitRating;
+	private int id;
 
 	public RateProfessorFragment() {
 
@@ -42,6 +43,10 @@ public class RateProfessorFragment extends Fragment {
 		Bundle bundle = new Bundle();
 		bundle.putInt("professorId", professorId);
 		this.setArguments(bundle);
+	}
+
+	public void setInt(int id) {
+		this.id = id;
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -131,6 +136,8 @@ public class RateProfessorFragment extends Fragment {
 								ApplicationFactory.getProfessorService(
 										getActivity())
 										.getUpdatedProfessorListFromServer();
+								ratingBar.setRating(0);
+								commentsText.setText("");
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
